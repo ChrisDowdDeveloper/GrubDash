@@ -1,15 +1,20 @@
-const router = require("express").Router();
+const express = require("express")
+const router = express.Router();
 const controller = require("./orders.controller");
-const dishesRouter = require("../dishes/dishes.router");
 const methodNotAllowed = require("../errors/methodNotAllowed");
+
 // TODO: Implement the /orders routes needed to make the tests pass
-router.use("/:orderId")
+  router
+    .route("/:orderId")
     .get(controller.read)
-    .post(controller.create)
-    .put(controller.update)
     .delete(controller.delete)
-    .all(methodNotAllowed);
-router.use("/")
+    .put(controller.update)
+    .all(methodNotAllowed)
+
+  router
+    .route("/")
     .get(controller.list)
-    .all(methodNotAllowed);
+    .post(controller.create)
+    .all(methodNotAllowed)
+
 module.exports = router;

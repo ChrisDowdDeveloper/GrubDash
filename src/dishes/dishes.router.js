@@ -3,9 +3,10 @@ const controller = require("./dishes.controller");
 const methodNotAllowed = require("../errors/methodNotAllowed");
 // TODO: Implement the /dishes routes needed to make the tests pass
 
-router.route("/dishes/:dishId")
+router.route("/:dishId")
     .get(controller.read)
     .put(controller.update)
+    .delete(controller.delete)
     .all(methodNotAllowed);
 router.route("/")
     .get(controller.list)
